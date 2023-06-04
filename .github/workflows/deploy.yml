@@ -1,11 +1,11 @@
-name: Snyk Security
+name: Deploy Next.js
 on:
   push:
     branches:
       - main
 jobs:
   security:
-    name: Snyk
+    name: Snyk Security Dependencies
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -15,7 +15,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   
   deploy:
-    name: Deploy app
+    name: Deploy Fly.io
     runs-on: ubuntu-latest
     needs: [security]
     steps:
