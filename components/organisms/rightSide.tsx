@@ -1,35 +1,35 @@
-import Link from 'next/link'
+'use client'
+import { type ReactNode, useState } from 'react'
 
-export default function RightSide() {
-    return (
-        <div className="lg:p-8">
-          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-            <div className="flex flex-col space-y-2 text-center">
-              <h1 className="text-2xl font-semibold tracking-tight">
-                Create an account
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                Enter your email below to create your account
-              </p>
-            </div>
-            <p className="px-8 text-center text-sm text-muted-foreground">
-              By clicking continue, you agree to our{" "}
-              <Link
-                href="/terms"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="/privacy"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Privacy Policy
-              </Link>
-              .
-            </p>
-          </div>
-        </div>
-    )
+import DietFormProvider, { useFormData } from '@/components/molecules/dietForm.context'
+import FirstStepFormMolecule from '@/components/molecules/firstStepForm.molecule'
+
+export default function RightSide (): ReactNode {
+  const [formStep, setFormStep] = useState(0)
+  // const { data } = useFormData()
+
+  const nextFormStep = (): void => { setFormStep((currentStep: number) => currentStep + 1) }
+
+  const prevFormStep = (): void => { setFormStep((currentStep: number) => currentStep - 1) }
+
+  return (
+  <div className="lg:p-6">
+    <DietFormProvider>
+      {
+        formStep === 0 && (
+          <FirstStepFormMolecule
+            formStep={formStep}
+            nextFormStep={nextFormStep}
+            wrapperClass={formStep === 0 ? 'grid grid-cols-2 w-full gap-4 mx-auto sm:w-[600px]' : 'hide'}
+          />
+        )
+      }
+      {
+        formStep === 1 && (
+          <h1>New</h1>
+        )
+      }
+    </DietFormProvider>
+  </div>
+  )
 }
