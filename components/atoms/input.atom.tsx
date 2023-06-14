@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
-import { type ReactNode } from 'react'
+import { type ReactElement } from 'react'
 
 export interface IInputAtom {
   type: 'text' | 'number' | 'email'
@@ -17,23 +17,24 @@ export interface IInputAtom {
   control: any
 }
 
-export default function InputAtom ({ type, placeholder, label, id, wrapperClass, control }: IInputAtom): ReactNode {
+export default function InputAtom ({ type, placeholder, label, id, wrapperClass, control }: IInputAtom): ReactElement {
   return (
-    <FormField
-      control={control}
-      name={id}
-      className={'grid w-full items-center gap-1.5 ' + wrapperClass}
-      render={
-        ({ field }) => (
-        <FormItem>
-          <FormLabel>{label}</FormLabel>
-          <FormControl>
-            <Input type={type} placeholder={placeholder} {...field} />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-        )
-      }
-    />
+    <div className={'grid w-full items-center gap-1.5 ' + wrapperClass}>
+      <FormField
+        control={control}
+        name={id}
+        render={
+          ({ field }) => (
+          <FormItem>
+            <FormLabel>{label}</FormLabel>
+            <FormControl>
+              <Input type={type} placeholder={placeholder} {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+          )
+        }
+      />
+    </div>
   )
 }

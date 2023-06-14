@@ -1,12 +1,12 @@
 'use client'
-import { useState, createContext, useContext, type ReactNode } from 'react'
+import { useState, createContext, useContext, type ReactElement } from 'react'
 
-export const FormContext = createContext()
+export const FormContext = createContext({})
 
-export default function DietFormProvider ({ children }): ReactNode {
+export default function DietFormProvider ({ children }: any): ReactElement {
   const [data, setData] = useState({})
 
-  const setFormValues = (values): void => {
+  const setFormValues = (values: any): void => {
     setData((prevValues) => ({
       ...prevValues,
       ...values

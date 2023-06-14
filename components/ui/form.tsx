@@ -23,7 +23,7 @@ interface FormFieldContextValue<
 }
 
 const FormFieldContext = React.createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue
+  {} as unknown as FormFieldContextValue
 )
 
 const FormField = <
@@ -31,7 +31,7 @@ const FormField = <
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >({
     ...props
-  }: ControllerProps<TFieldValues, TName>) => {
+  }: ControllerProps<TFieldValues, TName>): any => {
   return (
     <FormFieldContext.Provider value={{ name: props.name }}>
       <Controller {...props} />
@@ -39,7 +39,7 @@ const FormField = <
   )
 }
 
-const useFormField = () => {
+const useFormField = (): any => {
   const fieldContext = React.useContext(FormFieldContext)
   const itemContext = React.useContext(FormItemContext)
   const { getFieldState, formState } = useFormContext()
@@ -67,7 +67,7 @@ interface FormItemContextValue {
 }
 
 const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue
+  {} as unknown as FormItemContextValue
 )
 
 const FormItem = React.forwardRef<
@@ -113,8 +113,8 @@ React.ComponentPropsWithoutRef<typeof Slot>
       id={formItemId}
       aria-describedby={
         !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
+          ? `${formDescriptionId as string}`
+          : `${formDescriptionId as string} ${formMessageId as string}`
       }
       aria-invalid={!!error}
       {...props}

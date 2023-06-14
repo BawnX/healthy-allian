@@ -10,7 +10,7 @@ import SelectAtom from '@/components/atoms/select.atom'
 import { Button } from '@/components/ui/button'
 import { useFormData } from '@/components/molecules/dietForm.context'
 import { Form } from '@/components/ui/form'
-import { type ReactNode } from 'react'
+import { type ReactElement } from 'react'
 
 export interface IFirstStepFormMolecule {
   wrapperClass: string
@@ -39,7 +39,7 @@ const formSchema = z.object({
   physical_activity: z.string({ required_error: 'Por favor selecione su nivel de actividad' })
 })
 
-export default function FirstStepFormMolecule ({ wrapperClass, formStep, nextFormStep }: IFirstStepFormMolecule): ReactNode {
+export default function FirstStepFormMolecule ({ wrapperClass, formStep, nextFormStep }: IFirstStepFormMolecule): ReactElement {
   const { setFormValues } = useFormData()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -62,21 +62,56 @@ export default function FirstStepFormMolecule ({ wrapperClass, formStep, nextFor
   return (
     <Form {...form}>
       <form className={wrapperClass} onSubmit={form.handleSubmit(onSubmit)}>
-        <InputAtom type="text" placeholder="nombre ejemplo" id="name" label="Nombre Completo" control={form.control}/>
+        <InputAtom
+          type="text"
+          placeholder="nombre ejemplo"
+          id="name" label="Nombre Completo"
+          control={form.control}
+          wrapperClass=''
+        />
 
-        <InputAtom type="email" placeholder="nombre@dominio.com" id="email" label="Correo" control={form.control}/>
+        <InputAtom
+          type="email"
+          placeholder="nombre@dominio.com"
+          id="email"
+          label="Correo"
+          control={form.control}
+          wrapperClass=''
+        />
 
-        <InputAtom type="number" placeholder="25" id="age" label="Edad" control={form.control}/>
+        <InputAtom
+          type="number"
+          placeholder="25"
+          id="age"
+          label="Edad"
+          control={form.control}
+          wrapperClass=''
+        />
 
-        <InputAtom type="number" placeholder="180" id="size" label="Altura en CM" control={form.control}/>
+        <InputAtom
+          type="number"
+          placeholder="180"
+          id="size"
+          label="Altura en CM"
+          control={form.control}
+          wrapperClass=''
+        />
 
-        <InputAtom type="number" placeholder="87" id="weight" label="Peso en KG" control={form.control}/>
+        <InputAtom
+          type="number"
+          placeholder="87"
+          id="weight"
+          label="Peso en KG"
+          control={form.control}
+          wrapperClass=''
+        />
 
         <SelectAtom
           label="Sexo"
           id="sex"
           placeholder="Selecione"
           control={form.control}
+          wrapperClass=''
           options={
             [
               { name: 'male', value: 'Masculino' },
@@ -90,6 +125,7 @@ export default function FirstStepFormMolecule ({ wrapperClass, formStep, nextFor
           id="physical_activity"
           placeholder="Selecione"
           control={form.control}
+          wrapperClass=''
           options={
             [
               { name: 'sedentary', value: 'Sedentaria' },

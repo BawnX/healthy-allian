@@ -1,16 +1,16 @@
 'use client'
-import { type ReactNode, useState } from 'react'
+import { type ReactElement, useState } from 'react'
 
-import DietFormProvider, { useFormData } from '@/components/molecules/dietForm.context'
+import DietFormProvider from '@/components/molecules/dietForm.context'
 import FirstStepFormMolecule from '@/components/molecules/firstStepForm.molecule'
 
-export default function RightSide (): ReactNode {
+export default function RightSide (): ReactElement {
   const [formStep, setFormStep] = useState(0)
   // const { data } = useFormData()
 
   const nextFormStep = (): void => { setFormStep((currentStep: number) => currentStep + 1) }
 
-  const prevFormStep = (): void => { setFormStep((currentStep: number) => currentStep - 1) }
+  // const prevFormStep = (): void => { setFormStep((currentStep: number) => currentStep - 1) }
 
   return (
   <div className="lg:p-6">

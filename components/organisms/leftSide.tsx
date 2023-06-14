@@ -1,7 +1,7 @@
 import { Command } from 'lucide-react'
-import { type ReactNode } from 'react'
+import { type ReactElement } from 'react'
 
-export default function LeftSide (): ReactNode {
+export default function LeftSide (): ReactElement {
   return (
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div
