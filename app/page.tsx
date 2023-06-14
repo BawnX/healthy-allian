@@ -1,5 +1,6 @@
 import LeftSide from '@/components/organisms/leftSide'
 import RightSide from '@/components/organisms/rightSide'
+import { type ReactNode } from 'react'
 
 export default function Home (): ReactNode {
   return (

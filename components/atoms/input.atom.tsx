@@ -6,6 +6,7 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
+import { type ReactNode } from 'react'
 
 export interface IInputAtom {
   type: 'text' | 'number' | 'email'

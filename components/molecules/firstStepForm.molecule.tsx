@@ -10,6 +10,7 @@ import SelectAtom from '@/components/atoms/select.atom'
 import { Button } from '@/components/ui/button'
 import { useFormData } from '@/components/molecules/dietForm.context'
 import { Form } from '@/components/ui/form'
+import { type ReactNode } from 'react'
 
 export interface IFirstStepFormMolecule {
   wrapperClass: string

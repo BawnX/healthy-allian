@@ -1,5 +1,6 @@
 import './globals.css'
 import { IBM_Plex_Sans } from 'next/font/google'
+import { type ReactNode } from 'react'
 
 const font = IBM_Plex_Sans({ subsets: ['latin-ext'], weight: '600' })
 
