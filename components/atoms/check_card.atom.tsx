@@ -3,8 +3,7 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage
+  FormLabel
 } from '@/components/ui/form'
 import { Checkbox } from '@/components/ui/checkbox'
 
@@ -17,7 +16,7 @@ export interface IButtonCardAtom {
   }>
 }
 
-export default function ButtonCardAtom ({ id, control, options }: IButtonCardAtom): ReactElement {
+export default function ButtonCardAtom ({ id, control, options }: IButtonCardAtom): ReactElement[] {
   return (
     options.map(({ label, icon }, index) => {
       return (
@@ -37,7 +36,7 @@ export default function ButtonCardAtom ({ id, control, options }: IButtonCardAto
                       ? field.onChange([...field.value, index])
                       : field.onChange(
                         field.value?.filter(
-                          (value) => value !== index
+                          (value: number) => value !== index
                         )
                       )
                   }}

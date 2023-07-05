@@ -35,10 +35,9 @@ export default function MultiStep (): ReactElement {
               />
             </SideMolecule>
             <FirstStepFormMolecule
-              className="lg:p-6"
               formStep={formStep}
               nextFormStep={nextFormStep}
-              wrapperClass={formStep === 0 ? 'grid grid-cols-2 w-full gap-4 mx-auto sm:w-[600px]' : 'hide'}
+              wrapperClass={formStep === 0 ? 'lg:p-6 grid grid-cols-2 w-full gap-4 mx-auto sm:w-[600px]' : 'hide'}
             />
           </>
         )

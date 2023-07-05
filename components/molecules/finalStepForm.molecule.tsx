@@ -5,6 +5,8 @@ import LogoAtom from '@/components/atoms/logo.atom'
 
 interface IFinalStepForm {
   wrapperClass: string
+  formStep: number
+  prevFormStep: () => void
 }
 
 export default function FinalStepForm ({ wrapperClass }: IFinalStepForm): ReactElement {
