@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
 import * as z from 'zod'
@@ -36,26 +35,30 @@ const formSchema = z.object({
     .min(2, { message: 'El peso minimo es de 30 KG' })
     .max(3, { message: 'El peso maximo es de 250 KG' }),
   sex: z.string({ required_error: 'Por favor selecione su sexo' }),
-  physical_activity: z.string({ required_error: 'Por favor selecione su nivel de actividad' })
+  physical_activity: z.string({ required_error: 'Por favor selecione su nivel de actividad' }),
+  purpose: z.string({ required_error: 'Por favor selecione su nivel de proposito' })
 })
 
 export default function FirstStepFormMolecule ({ wrapperClass, formStep, nextFormStep }: IFirstStepFormMolecule): ReactElement {
-  const { setFormValues } = useFormData()
-
+  const { data, setFormValues } = useFormData()
+  const user = data.user ?? {}
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      age: '',
-      size: '',
-      weight: ''
+      name: user.name ?? '',
+      email: user.email ?? '',
+      age: user.age ?? '',
+      size: user.size ?? '',
+      weight: user.weight ?? '',
+      sex: user.sex,
+      physical_activity: user.physical_activity,
+      purpose: user.purpose
     }
   })
 
   // 2. Define a submit handler.
   function onSubmit (values: z.infer<typeof formSchema>): void {
-    setFormValues(values)
+    setFormValues({ user: values })
     nextFormStep()
   }
 
@@ -137,9 +140,21 @@ export default function FirstStepFormMolecule ({ wrapperClass, formStep, nextFor
           }
         />
 
-        <span />
+        <SelectAtom
+          label="Proposito"
+          id="purpose"
+          placeholder="Selecione"
+          control={form.control}
+          wrapperClass=''
+          options={
+            [
+              { name: 'lose_body_fat', value: 'Bajar grasa corporal' },
+              { name: 'build_muscle', value: 'Aumentar musculatura' }
+            ]
+          }
+        />
 
-        <Button className="w-48" type="submit">Siguiente</Button>
+        <Button className="w-48" type="submit" variant="default">Siguiente</Button>
       </form>
     </Form>
   )
